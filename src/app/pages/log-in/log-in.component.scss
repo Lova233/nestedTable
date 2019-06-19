@@ -1,0 +1,24 @@
+
+.login-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form{
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+  padding: 15px;
+}
+
+mat-form-field{
+  width: 90%;
+}
+
+.signIn{
+  margin-top: 20px;
+}

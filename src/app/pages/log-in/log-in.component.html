@@ -1,15 +1,15 @@
-<section id="login-container">
-
-  <section id="form-content">
-
-    <input type="text" placeholder="Email" value="" />
-
-    <input type="text" placeholder="Password" value="">
-
-    <button type="submit" id="login-btn" (click)="navigateTo('sign-in')">Login</button>
-
-    <a (click)="navigateTo('sign-in')">Sign In</a>
-
-  </section>
-
+<section id="login-container" class="login-section">
+    <form id="form-content" class="login-form" [formGroup]="loginForm" (ngSubmit)="logIn()">
+      <h2>Company X</h2>
+        <mat-form-field appearance="outline">
+              <input matInput formControlName="email">
+              <mat-label>Email</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+              <input matInput formControlName="password" >
+              <mat-label>Password</mat-label>
+        </mat-form-field>
+        <button mat-raised-button type="submit" id="login-btn" class="login-btn">Login</button>
+        <a class="signIn" (click)="navigateTo('sign-in')">Sign In</a>
+    </form>
 </section>

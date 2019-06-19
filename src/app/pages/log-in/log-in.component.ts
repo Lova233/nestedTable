@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatastoreService } from 'src/app/services/datastore.service';
+import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-log-in',
@@ -8,8 +9,12 @@ import { DatastoreService } from 'src/app/services/datastore.service';
 })
 export class LogInComponent implements OnInit {
 
+  loginForm: FormGroup;
+  errored: boolean;
   constructor(
-    private datastore: DatastoreService
+    private datastore: DatastoreService,
+    private formBuilder: FormBuilder
+    
   ) { }
 
   /* Page Tasks:
@@ -21,7 +26,25 @@ export class LogInComponent implements OnInit {
   *  5) Header should`t be vissible for this page
   *
   */
-  ngOnInit() { }
+  ngOnInit() { 
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+  });
+  }
+
+
+  logIn() {
+    console.log(this.loginForm.value,"aa")
+    if (this.loginForm.invalid) {
+        this.errored = true;
+        setTimeout( function() { this.errored = false; }.bind(this), 3000 );
+    } else {
+        // dispatch login 
+        this.loginForm.reset();
+    }
+}
+
 
   navigateTo(page: string) {
     this.datastore.navigateTo(page);
