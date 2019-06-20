@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { DatastoreService } from 'src/app/services/datastore.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+
+import { policiesI } from 'src/app/app.models';
+import { Observable } from 'rxjs';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-nested-data',
@@ -7,6 +13,10 @@ import { DatastoreService } from 'src/app/services/datastore.service';
   styleUrls: ['./nested-data.component.scss']
 })
 export class NestedDataComponent implements OnInit {
+  
+  @Input() filteredData:any;
+  displayedColumns: string[] = ['Client Name', 'Amount'];
+  dataSource: any;
 
   constructor(
     private api: DatastoreService
@@ -30,6 +40,11 @@ export class NestedDataComponent implements OnInit {
   *  4) Header must be vissible for this page;
   * 
   */
+    ngOnChanges(changes: SimpleChanges): void {
+      console.log(changes.filteredData)
+      this.dataSource = this.filteredData;
+      console.log(this.dataSource)
+    }
 
   ngOnInit() {
   }
