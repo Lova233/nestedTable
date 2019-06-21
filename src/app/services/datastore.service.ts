@@ -16,6 +16,10 @@ export class DatastoreService {
     private http: HttpClient
   ) { }
 
+  isLoggedin(){
+    return localStorage.getItem('authToken') !== null;
+  }
+
   navigateTo(page: string) {
     this.router.navigate([`/${page}`]);
   }

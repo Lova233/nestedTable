@@ -11,5 +11,8 @@
         </mat-form-field>
         <button mat-raised-button type="submit" id="login-btn" class="login-btn">Login</button>
         <a class="signIn" (click)="navigateTo('sign-in')">Sign In</a>
+        <p *ngIf="errored">Email must be valid</p>
+        <p *ngIf="errored">Password must be 5 char long</p>
+        <p *ngIf="invalidParam">Wrong Username or password</p>
     </form>
 </section>

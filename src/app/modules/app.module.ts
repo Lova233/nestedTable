@@ -19,6 +19,7 @@ import { HeaderComponent } from '../components/header/header.component';
 // libraries
 
 import { MaterialModule as AppMaterialModule } from './angular-material-module'
+import { AuthguardGuard } from '../guard/authGuard';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { MaterialModule as AppMaterialModule } from './angular-material-module'
     AppMaterialModule,
     InMemoryWebApiModule.forRoot(ApiDataService)
   ],
-  providers: [],
+  providers: [AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

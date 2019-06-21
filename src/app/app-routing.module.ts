@@ -4,12 +4,13 @@ import { LogInComponent } from './pages/log-in/log-in.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { CurrentStatusComponent } from './pages/current-status/current-status.component';
 import { NestedDataComponent } from './pages/nested-data/nested-data.component';
+import { AuthguardGuard } from './guard/authGuard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'current-status' },
-  { path: 'login', component: LogInComponent },
+  { path: 'login',  component: LogInComponent },
   { path: 'sign-in', component: SignInComponent },
-  { path: 'current-status', component: CurrentStatusComponent },
+  { path: 'current-status', canActivate: [AuthguardGuard], component: CurrentStatusComponent },
   { path: 'nested-data', component: NestedDataComponent },
   { path: '**', redirectTo: 'current-status' }
 ];
