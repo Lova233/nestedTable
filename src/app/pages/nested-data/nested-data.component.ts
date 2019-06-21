@@ -41,9 +41,7 @@ export class NestedDataComponent implements OnInit {
   * 
   */
     ngOnChanges(changes: SimpleChanges): void {
-      console.log(changes.filteredData)
       this.dataSource = this.filteredData;
-      console.log(this.dataSource)
     }
 
   ngOnInit() {
