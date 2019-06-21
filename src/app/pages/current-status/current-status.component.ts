@@ -10,6 +10,7 @@ import { Observable, of } from 'rxjs';
 import { element } from 'protractor';
 
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ReturnStatement } from '@angular/compiler';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class CurrentStatusComponent implements OnInit {
   expandedElement: any;
   dataSource = new PoliciesDataSource(this.api);
   toShow: boolean;
+  isDetailsAvailable: boolean = false;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   // quello sopra è giusto?
@@ -59,21 +61,41 @@ export class CurrentStatusComponent implements OnInit {
 
   ngOnInit() {
   this.api.getPoliciesDetails().subscribe(res => {this.dataDetails = res; });
-  // this.api.getPolicies().subscribe( res => { this.dataSource = res; });
-  //   setTimeout(() => {
-  //     console.log(this.dataDetails)
-  //   }, 2000);
   }
+
   show(element){
-this.toShow= element.polId;    
+    console.log(element)
+    this.toShow = element.polId;
+    console.log(this.isRecordAvailable(element))
+    // if(this.ele(element)){
+    //   console.log("è vero")
+    //   this.isDetailsAvailable = true
+    // }else{
+    //   console.log("è falso")
+    //   this.isDetailsAvailable = false
+    // }
   }
+
+  isRecordAvailable(e){
+    let x = this.dataDetails.filter(f=>f.polId === e.polId)
+    if(x && x.length){
+      this.isDetailsAvailable = true
+    }else{
+      this.isDetailsAvailable = false
+    }
+  }
+
   ele(e){
     let x = this.dataDetails.filter(f=>f.polId===e)
-    return x
+    if(x && x.length){
+      return x
+    }else{
+      return false
+    }
   }
 
   isEqual(e){
-    console.log(e,this.toShow,e===this.toShow)
+    console.log(e)
     return e === this.toShow
   }
 

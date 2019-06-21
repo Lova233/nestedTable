@@ -19,8 +19,9 @@
     </ng-container>
 
     <ng-container  matColumnDef="expandedDetail">
-      <td mat-cell *matCellDef="let element"  [attr.colspan]="displayedColumns.length" [ngClass]="{'hide': !isEqual(element.polId)}"  >
-          <app-nested-data [filteredData]="ele(element.polId)" *ngIf="isEqual(element.polId)" ></app-nested-data>
+      <td mat-cell *matCellDef="let element"  [attr.colspan]="displayedColumns.length" [ngClass]="{'hide': !isEqual(element.polId )}"  >
+          <app-nested-data [filteredData]="ele(element.polId)" *ngIf="isDetailsAvailable" ></app-nested-data>
+          <p *ngIf="!isDetailsAvailable">no details available for this record</p>
       </td>
     </ng-container>
 
@@ -30,7 +31,7 @@
     (click)="show(row)"></tr>
     
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail'] when: isExpansionDetailRow" 
-            style="overflow: hidden" class="example-detail-row" [ngClass]="{'hide': !isEqual(row.polId)}"></tr>
+        style="overflow: hidden" class="example-detail-row" [ngClass]="{'hide': !isEqual(row.polId)}"></tr>
 </table>
 <mat-paginator [pageSizeOptions]="[5, 10, 20]"  [pageSize]="5" showFirstLastButtons></mat-paginator>
 
