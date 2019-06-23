@@ -1,11 +1,13 @@
 #wrapper {
     width: 100%;
     height: 100%;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     #header-wrapper {
         width: 100%;
-        height: 6vh;
+        height: 80px;
         line-height: 6vh;
         background: #2196f3;
     }

@@ -3,6 +3,7 @@ export class authI {
     userId: number;
     username: string;
     password: string;
+    token: string;
 }
 
 export class policiesI {

@@ -6,6 +6,7 @@ import { ScrollDispatchModule, ScrollingModule } from '@angular/cdk/scrolling';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { CdkTableModule   } from '@angular/cdk/table';
 import {
+  MatPaginatorModule,
   MatAutocompleteModule,
   MatBadgeModule,
   MatButtonModule,
@@ -33,6 +34,7 @@ import {
   MatStepperModule,
   MatTableModule,
   MatTabsModule,
+  MatSortModule,
   MatToolbarModule,
   MatSelectModule,
   MatTooltipModule,
@@ -61,6 +63,7 @@ const PICKER_FORMAT = {
     CdkTableModule,
 
     // Material
+    MatPaginatorModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -88,6 +91,7 @@ const PICKER_FORMAT = {
     MatStepperModule,
     MatTableModule,
     MatTabsModule,
+    MatSortModule,
     MatToolbarModule,
     MatTooltipModule,
     MatNativeDateModule
@@ -102,6 +106,7 @@ const PICKER_FORMAT = {
     CdkTableModule,
 
     // Material
+    MatPaginatorModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -129,6 +134,7 @@ const PICKER_FORMAT = {
     MatStepperModule,
     MatTableModule,
     MatTabsModule,
+    MatSortModule,
     MatToolbarModule,
     MatTooltipModule,
     MatNativeDateModule,

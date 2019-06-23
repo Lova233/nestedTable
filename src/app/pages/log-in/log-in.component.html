@@ -2,11 +2,11 @@
     <form id="form-content" class="login-form" [formGroup]="loginForm" (ngSubmit)="logIn()">
       <h2>Company X</h2>
         <mat-form-field appearance="outline">
-              <input matInput formControlName="email">
+              <input matInput formControlName="email" type="email">
               <mat-label>Email</mat-label>
         </mat-form-field>
         <mat-form-field appearance="outline">
-              <input matInput formControlName="password" >
+              <input matInput formControlName="password" type="password" >
               <mat-label>Password</mat-label>
         </mat-form-field>
         <button mat-raised-button type="submit" id="login-btn" class="login-btn">Login</button>

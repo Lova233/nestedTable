@@ -1,23 +1,39 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, forkJoin, Subject, of } from 'rxjs';
 import { authI, policiesI, policiesDetailsI } from '../app.models';
+import { catchError } from 'rxjs/operators';
+import { ApiDataService } from './api-data.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatastoreService {
+  
+  token:any;
+  private subject = new Subject<string>();
 
   private SERVER_URL: string = "http://localhost:8080/api/";
-
   constructor(
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private data: ApiDataService,
   ) { }
+  
+
+  isLogged(): boolean {
+    return localStorage.getItem('authToken') !== null;
+  }
 
   isLoggedin(){
-    return localStorage.getItem('authToken') !== null;
+    this.token = localStorage.getItem('authToken');
+    return new Promise<boolean>((resolve,reject)=>{
+      this.getUser().subscribe(res=>{
+        resolve(res.filter(user=> user.token === this.token).length>0);  
+      })
+    })
   }
 
   navigateTo(page: string) {
@@ -34,6 +50,16 @@ export class DatastoreService {
 
   public getPoliciesDetails(): Observable<policiesDetailsI[]> {
     return this.http.get<policiesDetailsI[]>(this.SERVER_URL + 'policiesDetails');
+  }
+
+  public addUser(payload: any): Observable<any> {
+    return this.http
+      .post<any>(this.SERVER_URL + 'newUsers', (payload))
+      .pipe(catchError((error: any) => {
+        console.log(error);
+        return error;
+      }
+        ));
   }
 
 

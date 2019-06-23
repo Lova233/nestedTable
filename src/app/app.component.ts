@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DatastoreService } from './services/datastore.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { from, Observable } from 'rxjs';
+import { map, share, tap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-root',
@@ -8,12 +12,14 @@ import { DatastoreService } from './services/datastore.service';
 })
 export class AppComponent implements OnInit {
   title = 'Angular-Task';
-
+  isLoggedIn$ : Observable<string>
   constructor(
-    private api: DatastoreService
+    private api: DatastoreService,
   ) { }
   
+  isLogged() {
+    return this.api.isLogged();
+  }
   ngOnInit () {
-    this.api.apiData().subscribe(data => console.log('API Data => ', data));
   }
 }

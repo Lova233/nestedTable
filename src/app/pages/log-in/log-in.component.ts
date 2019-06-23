@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DatastoreService } from 'src/app/services/datastore.service';
-import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { tokenName } from '@angular/compiler';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient } from 'selenium-webdriver/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-log-in',
@@ -14,9 +16,10 @@ export class LogInComponent implements OnInit {
   errored: boolean;
   users: any;
   invalidParam: boolean = false
+  isLoggedIn: any;                 
   constructor(
     private datastore: DatastoreService,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder, 
   ) { }
 
   /* Page Tasks:
@@ -33,9 +36,6 @@ export class LogInComponent implements OnInit {
       this.navigateTo('current-status')
     }
     this.datastore.getUser().subscribe(res => {this.users = res; });
-    // setTimeout(() => {
-    //   console.log(this.users,"ss")
-    // }, 2000);
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
@@ -49,7 +49,6 @@ export class LogInComponent implements OnInit {
         setTimeout( function() { this.errored = false; }.bind(this), 3000 );
     } else {
         this.setToken(this.loginForm.value)
-        // this.loginForm.reset();
     }
 }
 
@@ -57,6 +56,7 @@ export class LogInComponent implements OnInit {
     const user = this.validateUser(param)
     if(user !== false){
       localStorage.setItem('authToken', user[0].token);
+      localStorage.setItem('userName', user[0].username);
       this.navigateTo('current-status')
     } else {
       this.invalidParam = true 
@@ -66,6 +66,7 @@ export class LogInComponent implements OnInit {
 
   validateUser(param){
     let x = this.users.filter(f => f.email === param.email && f.password === param.password)
+    console.log(x)
     if(x && x.length){
       return x
     }else{

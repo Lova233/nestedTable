@@ -40,3 +40,13 @@ body {
 a {
     cursor: pointer;
 }
+
+
+.mat-header-row{
+  background-color:#2196f3;
+  th{
+    color: white;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+  }
+}

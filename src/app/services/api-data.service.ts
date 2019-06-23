@@ -7,11 +7,13 @@ import { InMemoryDbService } from 'angular-in-memory-web-api'
 export class ApiDataService implements InMemoryDbService {
 
   constructor() { }
+
+
   createDb() {
 
     const auth = [
-      { userId: 1, username: 'admin', password: 'admin', email: 'admin@admin.com' },
-      { userId: 2, username: 'guest', password: 'guest', email: 'guest@guest.com' }
+      { userId: 1, username: 'admin', password: 'admin', email: 'admin@admin.com', token: '1111111111' },
+      { userId: 2, username: 'guest', password: 'guest', email: 'guest@guest.com', token: '2222222222' }
     ];
 
     const policies = [
@@ -78,8 +80,10 @@ export class ApiDataService implements InMemoryDbService {
       { detailsId: 27, polId: 18, amount: 4000, clientName: 'admin31' },
       { detailsId: 28, polId: 19, amount: 500, clientName: 'admin37' },
     ]
-
-    return { auth, policies, policiesDetails };
+      const newUsers = [
+        {}
+      ]
+    return { auth, policies, policiesDetails, newUsers };
 
   }
 }

@@ -2,36 +2,36 @@
 
     <!-- num Column -->
     <ng-container matColumnDef="num">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+      <th mat-header-cell *matHeaderCellDef > Num </th>
       <td mat-cell *matCellDef="let element" > {{element.num}} </td>
     </ng-container>
 
     <!-- amount Column -->
     <ng-container matColumnDef="amount">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <th mat-header-cell *matHeaderCellDef > Amount </th>
       <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
     </ng-container>
 
     <!-- description Column -->
     <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Weight </th>
+      <th mat-header-cell *matHeaderCellDef > Description </th>
       <td mat-cell *matCellDef="let element"> {{element.description}} </td>
     </ng-container>
 
     <ng-container  matColumnDef="expandedDetail">
       <td mat-cell *matCellDef="let element"  [attr.colspan]="displayedColumns.length" [ngClass]="{'hide': !isEqual(element.polId )}"  >
-          <app-nested-data [filteredData]="ele(element.polId)" *ngIf="isDetailsAvailable" ></app-nested-data>
+          <app-nested-data [filteredData]="filterData(element.polId)" *ngIf="isDetailsAvailable" class="animated fadeIn" ></app-nested-data>
           <p *ngIf="!isDetailsAvailable">no details available for this record</p>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
-
+    class="example-element-row"
     (click)="show(row)"></tr>
     
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail'] when: isExpansionDetailRow" 
-        style="overflow: hidden" class="example-detail-row" [ngClass]="{'hide': !isEqual(row.polId)}"></tr>
+        style="overflow: hidden" class="example-detail-row animated fadeIn" [ngClass]="{'hide': !isEqual(row.polId)}"></tr>
 </table>
 <mat-paginator [pageSizeOptions]="[5, 10, 20]"  [pageSize]="5" showFirstLastButtons></mat-paginator>
 

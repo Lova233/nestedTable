@@ -8,7 +8,7 @@ import { AuthguardGuard } from './guard/authGuard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'current-status' },
-  { path: 'login',  component: LogInComponent },
+  { path: 'login', component: LogInComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'current-status', canActivate: [AuthguardGuard], component: CurrentStatusComponent },
   { path: 'nested-data', component: NestedDataComponent },

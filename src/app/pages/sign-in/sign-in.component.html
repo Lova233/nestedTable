@@ -1,17 +1,22 @@
-<section id="sign-in-container">
-
-    <section id="form-content">
-  
-      <input type="text" placeholder="Email" value="" />
-  
-      <input type="text" placeholder="Password" value="">
-
-      <input type="text" placeholder="Re-password" value="">
-  
-      <button type="submit" id="login-btn">Sign In</button>
-  
-      <a (click)="navigateTo('login')">Sign In</a>
-  
-    </section>
-  
-  </section>
+<section id="login-container" class="login-section">
+  <form id="form-content" class="login-form" [formGroup]="signInForm" (ngSubmit)="signIn()">
+    <h2>Company X</h2>
+      <mat-form-field appearance="outline">
+            <input matInput formControlName="email" type="email">
+            <mat-label>Email</mat-label>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+            <input matInput formControlName="password" type="password" >
+            <mat-label>Password</mat-label>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="confirmpassword" type="password">
+        <mat-label>Confirm password</mat-label>
+      </mat-form-field>
+      <button mat-raised-button type="submit" id="login-btn" class="login-btn">Login</button>
+      <a class="signIn" (click)="navigateTo('sign-in')">Sign In</a>
+      <p *ngIf="errored">Email must be valid</p>
+      <p *ngIf="errored">Password must be 5 char long</p>
+      <p *ngIf="invalidParam">Wrong Username or password</p>
+  </form>
+</section>
