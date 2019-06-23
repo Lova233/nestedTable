@@ -23,5 +23,15 @@ tr.example-element-row:not(.example-expanded-row):active {
   display: flex;
 }
 
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell{
+  border: none;
+}
+
+.nodata{
+  text-align: center;
+  color: white;
+  padding: 20px;
+  background-color: #2196f3;
+}
 
 
